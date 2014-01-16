@@ -51,6 +51,38 @@ connector.getFilterChain().addLast("keepalive", new PollKeepAliveFilter(KeepAliv
 connector.getFilterChain().addLast("statuspolling", new StatusRequestFilter());
 ```
 
+###Send a command
+```
+// Send a Status Request Command and wait for it to completely send.
+session.write(new StatusRequestCommand()).awaitUninterruptibly();
+```
+
+###Shutdown
+```
+// Close the session and then the connection.
+session.getCloseFuture().awaitUninterruptibly();
+connector.dispose();
+```
+
+###Handling Received Messages
+```
+// To handle received messages, a MessageHandler must be registered.
+// Unfortunately, only one MessageHandler may be registered in Mina.
+// Create a DemuxingIoHandler to split sent messages from received messages.
+DemuxingIoHandler demuxIoHandler = new DemuxingIoHandler();
+// Ignore sent messages
+demuxIoHandler.addSentMessageHandler(Object.class, MessageHandler.NOOP);
+// Register a received message handler.
+// Our FanOutStateHandler allows multiple Handlers to receive the message, instead of the first matching.
+FanOutStateHandler receiveHandler = new FanOutStateHandler();
+// receiveHandler will handle any message of type IStateChangeEvent
+demuxIoHandler.addReceivedMessageHandler(IStateChangeEvent.class, receiveHandler);
+
+// To be informed of DSC Panel state change events, extend the appropriate class and register the handler.
+ZoneStateHandler myZoneHandler = new MyZoneStateHandler();
+receiveHandler.addMessageHandler(IZoneStateChangeEvent.class, myZoneHandler);
+```
+
 ##References
 
 [DSC IT-100 Product Page](http://www.dsc.com/index.php?n=products&amp;o=view&amp;id=22)
