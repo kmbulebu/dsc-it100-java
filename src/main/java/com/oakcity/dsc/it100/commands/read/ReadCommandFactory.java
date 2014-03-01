@@ -64,7 +64,7 @@ public class ReadCommandFactory {
 		final String commandCode = receivedCommand.substring(0, 3);
 		
 		Class<? extends ReadCommand> commandClass = codeToCommandMap.get(commandCode);
-		System.out.println(commandCode + ", " + commandClass);
+		//System.out.println(commandCode + ", " + commandClass);
 		if (commandClass == null) {
 			throw new ReadCommand.UnknownCommandException(receivedCommand);
 		}
