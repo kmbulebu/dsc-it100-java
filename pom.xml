@@ -29,6 +29,11 @@
 				<version>2.0.7</version>
 			</dependency>
 			<dependency>
+				<groupId>org.apache.mina</groupId>
+				<artifactId>mina-transport-serial</artifactId>
+				<version>2.0.7</version>
+			</dependency>
+			<dependency>
 				<groupId>org.bidib.jbidib.org.qbang.rxtx</groupId>
 				<artifactId>rxtxcomm</artifactId>
 				<version>2.2</version>
@@ -64,7 +69,7 @@
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-api</artifactId>
 				<version>2.0-rc1</version>
-				<scope>provided</scope>
+				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
@@ -100,6 +105,10 @@
 			<artifactId>mina-core</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-transport-serial</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.bidib.jbidib.org.qbang.rxtx</groupId>
 			<artifactId>rxtxcomm</artifactId>
 		</dependency>
@@ -111,7 +120,7 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<scope>provided</scope>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
@@ -169,24 +178,13 @@
 							</descriptorRefs>
 							<archive>
 								<manifest>
-									<mainClass>com.oakcity.dsc.it100.IT100</mainClass>
-									<packageName>com.oakcity.dsc.it100</packageName>
+									<mainClass>com.oakcity.dsc.it100.mq.Server</mainClass>
+									<packageName>com.oakcity.dsc.it100.mq</packageName>
 								</manifest>
 							</archive>
 						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<archive>
-						<manifest>
-							<mainClass>com.oakcity.dsc.it100.IT100</mainClass>
-							<packageName>com.oakcity.dsc.it100</packageName>
-						</manifest>
-					</archive>
-				</configuration>
 			</plugin>
 
 		</plugins>

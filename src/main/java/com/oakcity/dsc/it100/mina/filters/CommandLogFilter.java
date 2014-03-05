@@ -63,6 +63,11 @@ public class CommandLogFilter extends IoFilterAdapter {
 			return "RECEIVED".equals(name);
 		}
 		
+		@Override
+		public String toString() {
+			return "RECEIVED";
+		}
+		
 	}
 	
 	private static class SentMarker implements Marker {
@@ -91,6 +96,11 @@ public class CommandLogFilter extends IoFilterAdapter {
 		@Override
 		public boolean isInstanceOf(String name) {
 			return "SENT".equals(name);
+		}
+		
+		@Override
+		public String toString() {
+			return "SENT";
 		}
 		
 	}
