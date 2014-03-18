@@ -1,4 +1,4 @@
-package com.oakcity.dsc.it100.mina.handlers.rx;
+package com.oakcity.dsc.it100.rx;
 
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.handler.demux.DemuxingIoHandler;
@@ -26,6 +26,7 @@ public class ReadCommandOnSubscribe implements rx.Observable.OnSubscribe<ReadCom
 			}
 			
 		};
+		// TODO Determine how we want to handle errors. One error and the Observable stops receiving events.
 		/*final ExceptionHandler<Throwable> exceptionHandler = new ExceptionHandler<Throwable>() {
 
 			@Override

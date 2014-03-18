@@ -1,4 +1,4 @@
-package com.oakcity.dsc.it100.mq;
+package com.oakcity.dsc.it100.rx;
 
 import java.net.SocketAddress;
 

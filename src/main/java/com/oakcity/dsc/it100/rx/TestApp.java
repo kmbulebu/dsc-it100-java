@@ -1,4 +1,4 @@
-package com.oakcity.dsc.it100.mq;
+package com.oakcity.dsc.it100.rx;
 
 import rx.Observable;
 import rx.functions.Action1;
@@ -10,10 +10,10 @@ import com.oakcity.dsc.it100.commands.read.ZoneOpenCommand;
 public class TestApp {
 
 	public static void main(String[] args) {
-		Server server = new Server(new ConfigurationBuilder().withRemoteSocket("raspberrypi", 2000).build());
+		IT100 server = new IT100(new ConfigurationBuilder().withRemoteSocket("raspberrypi", 2000).build());
 		
 		try {	
-			Observable<ReadCommand> observable = server.start();
+			Observable<ReadCommand> observable = server.connect();
 			
 			observable.filter(new Func1<ReadCommand, Boolean>() {
 
