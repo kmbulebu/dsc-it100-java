@@ -8,7 +8,7 @@ The library is very much a work in progress. It is built using Apache MINA, a li
 
 ##Basic Usage
 
-###Typical Serial Setup and Connection
+###Typical Serial Setup and Basic Usage
 ```
 // Configure IT-100 for Serial Port Access
 IT100 it100 = new IT100(new ConfigurationBuilder().withSerialPort("/dev/ttyUSB0",19200).build();
