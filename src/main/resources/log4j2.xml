@@ -4,21 +4,10 @@
     <Console name="Console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d{ISO8601} [%marker] %msg%n"/>
     </Console>
-    <RollingRandomAccessFile name="LogFile" fileName="/var/log/dsc/it-100-commands.log"
-                 filePattern="/var/log/dsc/it-100-commands-%d{MM-dd-yyyy}-%i.log.gz">
-      <PatternLayout>
-        <Pattern>%d{ISO8601} [%marker] %msg%n</Pattern>
-      </PatternLayout>
-      <Policies>
-        <TimeBasedTriggeringPolicy  />
-        <SizeBasedTriggeringPolicy size="50 MB"/>
-      </Policies>
-    </RollingRandomAccessFile>
   </Appenders>
   <Loggers>
-    <Root level="info">
+    <Root level="warn">
       <AppenderRef ref="Console"/>
-      <AppenderRef ref="LogFile"/>
     </Root>
   </Loggers>
 </Configuration>

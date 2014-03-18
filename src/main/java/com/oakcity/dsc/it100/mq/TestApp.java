@@ -1,18 +1,34 @@
 package com.oakcity.dsc.it100.mq;
 
+import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
+
+import com.oakcity.dsc.it100.commands.read.ReadCommand;
+import com.oakcity.dsc.it100.commands.read.ZoneOpenCommand;
+
 public class TestApp {
 
 	public static void main(String[] args) {
 		Server server = new Server(new ConfigurationBuilder().withRemoteSocket("raspberrypi", 2000).build());
-		server.getZoneOpenListeners().add(new ZoneOpenListener() {
+		
+		try {	
+			Observable<ReadCommand> observable = server.start();
 			
-			@Override
-			public void onZoneOpen(int zone, String label, boolean isOpen) {
-				System.out.println("Zone " + zone + " open state is " + isOpen);
-			}
-		});
-		try {
-			server.start();
+			observable.filter(new Func1<ReadCommand, Boolean>() {
+
+				@Override
+				public Boolean call(ReadCommand t1) {
+					return t1 instanceof ZoneOpenCommand;
+				}
+			}).subscribe(new Action1<ReadCommand>() {
+
+				@Override
+				public void call(ReadCommand t1) {
+					System.out.println(System.currentTimeMillis() + " " + t1.toString());
+				}
+				
+			});
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
