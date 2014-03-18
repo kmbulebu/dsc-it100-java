@@ -66,6 +66,9 @@ observable.filter(new Func1<ReadCommand, Boolean>() {
     }
 	
 });
+
+// OR...
+observable.ofType(ZoneOpenCommand.class).subscribe...
 ```
 
 ##References
