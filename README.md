@@ -20,8 +20,8 @@ Observable<ReadCommand> observable = it100.connect();
 observable.subscribe(new Action1<ReadCommand>() {
 
     @Override
-    public void call(ReadCommand t1) {
-        System.out.println(System.currentTimeMillis() + " " + t1.toString());
+    public void call(ReadCommand command) {
+        System.out.println(System.currentTimeMillis() + " " + command.toString());
     }
 		
 });
@@ -54,15 +54,15 @@ it100.disconnect();
 observable.filter(new Func1<ReadCommand, Boolean>() {
 
     @Override
-    public Boolean call(ReadCommand t1) {
-        return t1 instanceof ZoneOpenCommand;
+    public Boolean call(ReadCommand command) {
+        return command instanceof ZoneOpenCommand;
     }
 	  
 }).subscribe(new Action1<ReadCommand>() {
 
     @Override
-    public void call(ReadCommand t1) {
-        System.out.println(System.currentTimeMillis() + " " + t1.toString());
+    public void call(ReadCommand command) {
+        System.out.println(System.currentTimeMillis() + " " + command.toString());
     }
 	
 });
