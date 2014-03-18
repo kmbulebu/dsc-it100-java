@@ -10,7 +10,7 @@ import com.oakcity.dsc.it100.commands.read.ZoneOpenCommand;
 public class TestApp {
 
 	public static void main(String[] args) {
-		IT100 server = new IT100(new ConfigurationBuilder().withRemoteSocket("raspberrypi", 2000).build());
+		IT100 server = new IT100(new ConfigurationBuilder().withStatusPolling(300).withRemoteSocket("raspberrypi", 2000).build());
 		
 		try {	
 			Observable<ReadCommand> observable = server.connect();

@@ -62,6 +62,17 @@ public class ConfigurationBuilder {
 	}
 	
 	/**
+	 * Enable status polling to the IT-100. The IT-100 will return with the status
+	 * of all zones, partitions, etc. 
+	 * @param seconds Time in seconds between status pollings. -1 disables polling.
+	 * @return This builder instance.
+	 */
+	public ConfigurationBuilder withStatusPolling(int seconds) {
+		configuration.statusPollingInterval = seconds;
+		return this;
+	}
+	
+	/**
 	 * Create an immutable Configuration instance.
 	 * @return
 	 */
@@ -76,7 +87,8 @@ public class ConfigurationBuilder {
 		
 		private IoConnector connector = null;
 		private SocketAddress address = null;
-		private long connectTimeout = 5000;
+		private long connectTimeout = 5 * 1000; // 5 seconds
+		private int statusPollingInterval = -1; // Disabled
 
 		@Override
 		public IoConnector getConnector() {
@@ -90,6 +102,11 @@ public class ConfigurationBuilder {
 		@Override
 		public long getConnectTimeout() {
 			return connectTimeout;
+		}
+		
+		@Override
+		public int getStatusPollingInterval() {
+			return statusPollingInterval;
 		}
 		
 	}

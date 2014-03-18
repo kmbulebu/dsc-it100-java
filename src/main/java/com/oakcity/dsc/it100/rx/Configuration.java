@@ -11,5 +11,7 @@ public interface Configuration {
 	public SocketAddress getAddress();
 	
 	public long getConnectTimeout();
+	
+	public int getStatusPollingInterval();
 
 }

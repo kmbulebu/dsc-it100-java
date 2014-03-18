@@ -58,7 +58,6 @@ public class IT100 {
 		final ProtocolCodecFilter protocolCodecFilter = new ProtocolCodecFilter(it100CodecFactory);
 		final CommandLogFilter loggingFilter = new CommandLogFilter(LOGGER, Level.INFO);
 		final PollKeepAliveFilter pollKeepAliveFilter = new PollKeepAliveFilter(KeepAliveRequestTimeoutHandler.EXCEPTION);
-		final StatusRequestFilter statusRequestFilter = new StatusRequestFilter();	
 		
 		// Connect to system serial port.
 		connector = configuration.getConnector();
@@ -71,7 +70,10 @@ public class IT100 {
 		connector.getFilterChain().addLast("codec", protocolCodecFilter);
 		connector.getFilterChain().addLast("logger", loggingFilter);   
 	    connector.getFilterChain().addLast("keepalive", pollKeepAliveFilter);
-	    connector.getFilterChain().addLast("statusrequest", statusRequestFilter);
+	    
+	    if (configuration.getStatusPollingInterval() != -1) {
+	    	connector.getFilterChain().addLast("statusrequest", new StatusRequestFilter(configuration.getStatusPollingInterval()));
+	    }
 	    
 	    final DemuxingIoHandler demuxIoHandler = new DemuxingIoHandler();
 	    

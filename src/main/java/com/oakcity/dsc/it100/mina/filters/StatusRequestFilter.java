@@ -10,12 +10,11 @@ import com.oakcity.dsc.it100.commands.write.StatusRequestCommand;
 
 public class StatusRequestFilter extends KeepAliveFilter {
 	
-	public static final int DEFAULT_REQUEST_INTERVAL = 60 * 5; // 5 minutes
 	public static final int DEFAULT_REQUEST_TIMEOUT = 5; // 5 seconds
 
-	public StatusRequestFilter() {
+	public StatusRequestFilter(int requestInterval) {
 		super(new StateRequestMessageFactory(), KeepAliveRequestTimeoutHandler.NOOP);
-		super.setRequestInterval(DEFAULT_REQUEST_INTERVAL);
+		super.setRequestInterval(requestInterval);
 		super.setRequestTimeout(DEFAULT_REQUEST_TIMEOUT);
 	}
 	
