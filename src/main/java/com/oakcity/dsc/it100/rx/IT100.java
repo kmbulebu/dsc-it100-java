@@ -138,12 +138,11 @@ public class IT100 {
 	/**
 	 * Sends a command to the IT-100. 
 	 * 
-	 * Asynchronous. 
+	 * Shortcut for getWriteObservable().onNext()
 	 * @param command The command to send to the IT-100.
 	 */
 	public void send(WriteCommand command) {
-		// TODO Return a Future that's independent of the MINA API.
-		session.write(command).awaitUninterruptibly();
+		getWriteObservable().onNext(command);
 	}
 	
 	/**
