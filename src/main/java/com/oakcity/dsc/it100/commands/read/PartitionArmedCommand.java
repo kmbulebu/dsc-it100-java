@@ -1,11 +1,9 @@
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.IPartition;
-import com.oakcity.dsc.it100.IPartitionStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
 public class PartitionArmedCommand extends BasePartitionCommand implements
-		ICommandHelp, IPartitionStateChangeEvent {
+		ICommandHelp {
 
 	/**
 	 * 
@@ -83,19 +81,5 @@ public class PartitionArmedCommand extends BasePartitionCommand implements
 	public ArmedMode getMode() {
 		return mode;
 	}
-
-	@Override
-	public boolean isPartitionChanged() {
-		return true;
-	}
-
-	@Override
-	public void updatePartition(IPartition partition) {
-		partition.setInExitDelay(false);
-		partition.setArmed(true);
-		partition.setArmedMode(getMode());
-		partition.setReady(false);
-		partition.setReadyToForceArm(false);
-	}
-
+	
 }

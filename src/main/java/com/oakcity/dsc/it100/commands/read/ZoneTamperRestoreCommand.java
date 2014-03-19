@@ -1,11 +1,9 @@
 
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.IZone;
-import com.oakcity.dsc.it100.IZoneStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class ZoneTamperRestoreCommand extends BasePartitionZoneCommand implements ICommandHelp, IZoneStateChangeEvent {
+public class ZoneTamperRestoreCommand extends BasePartitionZoneCommand implements ICommandHelp {
 
 	/**
 	 * 
@@ -21,17 +19,5 @@ public class ZoneTamperRestoreCommand extends BasePartitionZoneCommand implement
 	public String toString() {
 		return "ZoneTamperRestoreCommand [toString()=" + super.toString() + "]";
 	}
-
-	@Override
-	public boolean isZoneChanged() {
-		return true;
-	}
-
-	@Override
-	public void updateZone(IZone zone) {
-		zone.setInTamper(false);
-	}
-	
-	
 	
 }

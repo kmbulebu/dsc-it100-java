@@ -1,10 +1,8 @@
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.IPanel;
-import com.oakcity.dsc.it100.IPanelStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class SystemBellTroubleRestoreCommand extends ReadCommand implements ICommandHelp, IPanelStateChangeEvent {
+public class SystemBellTroubleRestoreCommand extends ReadCommand implements ICommandHelp {
 
 	/**
 	 * 
@@ -22,16 +20,6 @@ public class SystemBellTroubleRestoreCommand extends ReadCommand implements ICom
 		if (dataString.length() != 0) {
 			throw new CommandDataParseException("Expected data length of 0 bytes, received " + dataString.length());
 		}
-	}
-
-	@Override
-	public boolean isSystemChanged() {
-		return true;
-	}
-
-	@Override
-	public void updateSystem(IPanel system) {
-		system.setSystemBellTrouble(false);
 	}
 
 	@Override

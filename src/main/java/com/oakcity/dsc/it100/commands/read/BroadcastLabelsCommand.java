@@ -1,14 +1,8 @@
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.ICommandOutput;
-import com.oakcity.dsc.it100.ICommandOutputStateChangeEvent;
-import com.oakcity.dsc.it100.IPartition;
-import com.oakcity.dsc.it100.IPartitionStateChangeEvent;
-import com.oakcity.dsc.it100.IZone;
-import com.oakcity.dsc.it100.IZoneStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class BroadcastLabelsCommand extends ReadCommand implements ICommandHelp, IZoneStateChangeEvent, IPartitionStateChangeEvent, ICommandOutputStateChangeEvent {
+public class BroadcastLabelsCommand extends ReadCommand implements ICommandHelp {
 	
 	/**
 	 * 
@@ -117,36 +111,6 @@ public class BroadcastLabelsCommand extends ReadCommand implements ICommandHelp,
 
 	public String getLabel() {
 		return label;
-	}
-	
-	@Override
-	public boolean isZoneChanged() {
-		return type == LabelType.ZONE;
-	}
-
-	@Override
-	public void updateZone(IZone zone) {
-		zone.setLabel(label);
-	}
-	
-	@Override
-	public boolean isPartitionChanged() {
-		return type == LabelType.PARTITION;
-	}
-
-	@Override
-	public void updatePartition(IPartition partition) {
-		partition.setLabel(label);
-	}
-	
-	@Override
-	public boolean isCommandOutputChanged() {
-		return type == LabelType.COMMAND_OUTPUT;
-	}
-
-	@Override
-	public void updateCommandOutput(ICommandOutput output) {
-		output.setLabel(getLabel());
 	}
 
 	@Override

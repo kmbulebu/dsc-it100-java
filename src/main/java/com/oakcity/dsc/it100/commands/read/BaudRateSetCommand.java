@@ -3,11 +3,9 @@ package com.oakcity.dsc.it100.commands.read;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.oakcity.dsc.it100.IPanel;
-import com.oakcity.dsc.it100.IPanelStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class BaudRateSetCommand extends ReadCommand implements ICommandHelp, IPanelStateChangeEvent {
+public class BaudRateSetCommand extends ReadCommand implements ICommandHelp {
 
 	/**
 	 * 
@@ -51,13 +49,4 @@ public class BaudRateSetCommand extends ReadCommand implements ICommandHelp, IPa
 		return "The IT-100 sends the command in response to the following command sent by the application: Baud Change Rate (080)";
 	}
 
-	@Override
-	public boolean isSystemChanged() {
-		return true;
-	}
-
-	@Override
-	public void updateSystem(IPanel system) {
-		system.setBaudRate(baudRate);
-	}
 }

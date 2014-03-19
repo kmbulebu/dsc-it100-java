@@ -1,10 +1,8 @@
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.IPanel;
-import com.oakcity.dsc.it100.IPanelStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class KeybusFaultRestoredCommand extends ReadCommand implements ICommandHelp, IPanelStateChangeEvent {
+public class KeybusFaultRestoredCommand extends ReadCommand implements ICommandHelp {
 
 	/**
 	 * 
@@ -28,17 +26,5 @@ public class KeybusFaultRestoredCommand extends ReadCommand implements ICommandH
 	public String toString() {
 		return "KeybusFaultRestoredCommand [toString()=" + super.toString() + "]";
 	}
-
-	@Override
-	public boolean isSystemChanged() {
-		return true;
-	}
-
-	@Override
-	public void updateSystem(IPanel system) {
-		system.setInKeybusFault(false);
-	}
-	
-
 	
 }

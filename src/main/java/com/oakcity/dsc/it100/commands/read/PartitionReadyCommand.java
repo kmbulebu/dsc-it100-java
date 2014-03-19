@@ -1,11 +1,9 @@
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.IPartition;
-import com.oakcity.dsc.it100.IPartitionStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
 public class PartitionReadyCommand extends BasePartitionCommand implements
-		ICommandHelp, IPartitionStateChangeEvent {
+		ICommandHelp {
 
 	/**
 	 * 
@@ -23,14 +21,4 @@ public class PartitionReadyCommand extends BasePartitionCommand implements
 		return "PartitionReadyCommand [toString()=" + super.toString() + "]";
 	}
 
-	@Override
-	public boolean isPartitionChanged() {
-		return true;
-	}
-
-	@Override
-	public void updatePartition(IPartition partition) {
-		partition.setReady(true);
-		partition.setBusy(false);
-	}
 }

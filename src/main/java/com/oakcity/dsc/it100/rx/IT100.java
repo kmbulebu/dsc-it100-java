@@ -12,6 +12,8 @@ import org.apache.mina.handler.demux.DemuxingIoHandler;
 import org.apache.mina.handler.demux.MessageHandler;
 
 import rx.Observable;
+import rx.Observer;
+import rx.subjects.PublishSubject;
 
 import com.oakcity.dsc.it100.commands.read.ReadCommand;
 import com.oakcity.dsc.it100.commands.write.WriteCommand;
@@ -41,6 +43,10 @@ public class IT100 {
 	
 	private final Configuration configuration;
 	
+	private Observable<ReadCommand> readObservable;
+	
+	private PublishSubject<WriteCommand> writeObservable;
+	
 	public IT100(Configuration configuration) {
 		this.configuration = configuration;
 	}
@@ -51,7 +57,7 @@ public class IT100 {
 	 * @return An Observable for reading commands sent by the IT-100 to the application.
 	 * @throws Exception If an error occurs while connecting to the IT-100
 	 */
-	public Observable<ReadCommand> connect() throws Exception {		
+	public void connect() throws Exception {		
 		// Start up our MINA stuff 
 		// Setup MINA codecs
 		final IT100CodecFactory it100CodecFactory = new IT100CodecFactory();
@@ -92,7 +98,41 @@ public class IT100 {
 		session = future.getSession(); 
 		
 		// Create and return our Observable for received IT-100 commands.
-		return Observable.create(readCommandObservable);
+		readObservable = Observable.create(readCommandObservable);
+		
+		// Create a write observer.
+		writeObservable = PublishSubject.create();
+		writeObservable.subscribe(new Observer<WriteCommand>() {
+
+			@Override
+			public void onCompleted() {
+			}
+
+			@Override
+			public void onError(Throwable e) {
+			}
+
+			@Override
+			public void onNext(WriteCommand command) {
+				session.write(command);
+			}
+		});
+		
+		
+	}
+	
+	 public Observable<ReadCommand> getReadObservable() {
+		 if (readObservable == null) {
+			 throw new IllegalStateException("You must call connect() first.");
+		 }
+		return readObservable;
+	}
+	 
+	 public PublishSubject<WriteCommand> getWriteObservable() {
+		 if (readObservable == null) {
+			 throw new IllegalStateException("You must call connect() first.");
+		 }
+		return writeObservable;
 	}
 
 	/**

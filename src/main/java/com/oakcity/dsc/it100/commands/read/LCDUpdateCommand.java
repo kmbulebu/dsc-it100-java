@@ -3,10 +3,9 @@ package com.oakcity.dsc.it100.commands.read;
 import java.util.Arrays;
 
 import com.oakcity.dsc.it100.IVirtualKeypad;
-import com.oakcity.dsc.it100.IVirtualKeypadStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class LCDUpdateCommand extends ReadCommand implements ICommandHelp, IVirtualKeypadStateChangeEvent {
+public class LCDUpdateCommand extends ReadCommand implements ICommandHelp {
 	
 	/**
 	 * 
@@ -70,13 +69,7 @@ public class LCDUpdateCommand extends ReadCommand implements ICommandHelp, IVirt
 		
 		asciiData = dataString.substring(5, 5 + numberCharactersToDisplay).toCharArray();
 	}
-
-	@Override
-	public boolean isVirtualKeypadChanged() {
-		return true;
-	}
-
-	@Override
+	
 	public void updateVirtualKeypad(IVirtualKeypad keypad) {
 		int startingPos = lineNumber*16 + columnNumber;
 		

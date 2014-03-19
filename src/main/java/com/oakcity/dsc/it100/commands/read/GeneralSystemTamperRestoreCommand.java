@@ -1,10 +1,8 @@
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.IPanel;
-import com.oakcity.dsc.it100.IPanelStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class GeneralSystemTamperRestoreCommand extends ReadCommand implements ICommandHelp, IPanelStateChangeEvent {
+public class GeneralSystemTamperRestoreCommand extends ReadCommand implements ICommandHelp {
 	
 	/**
 	 * 
@@ -23,17 +21,5 @@ public class GeneralSystemTamperRestoreCommand extends ReadCommand implements IC
 			throw new CommandDataParseException("Expected data length of 0 bytes, received " + dataString.length());
 		}
 	}
-
-	@Override
-	public boolean isSystemChanged() {
-		return true;
-	}
-
-	@Override
-	public void updateSystem(IPanel system) {
-		system.setInGeneralSystemTamper(false);
-	}
-	
-
 	
 }

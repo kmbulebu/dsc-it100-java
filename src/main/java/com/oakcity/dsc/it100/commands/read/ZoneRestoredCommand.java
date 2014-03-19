@@ -1,10 +1,8 @@
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.IZone;
-import com.oakcity.dsc.it100.IZoneStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class ZoneRestoredCommand extends BaseZoneCommand implements ICommandHelp, IZoneStateChangeEvent {
+public class ZoneRestoredCommand extends BaseZoneCommand implements ICommandHelp {
 	
 
 	/**
@@ -21,16 +19,6 @@ public class ZoneRestoredCommand extends BaseZoneCommand implements ICommandHelp
 	@Override
 	public String toString() {
 		return "ZoneRestoredCommand [toString()=" + super.toString() + "]";
-	}
-
-	@Override
-	public boolean isZoneChanged() {
-		return true;
-	}
-
-	@Override
-	public void updateZone(IZone zone) {
-		zone.setOpen(false);
 	}
 	
 }

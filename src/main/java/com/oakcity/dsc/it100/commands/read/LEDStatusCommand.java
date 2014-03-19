@@ -1,10 +1,8 @@
 package com.oakcity.dsc.it100.commands.read;
 
-import com.oakcity.dsc.it100.IVirtualKeypad;
-import com.oakcity.dsc.it100.IVirtualKeypadStateChangeEvent;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
-public class LEDStatusCommand extends ReadCommand implements ICommandHelp, IVirtualKeypadStateChangeEvent {
+public class LEDStatusCommand extends ReadCommand implements ICommandHelp {
 	
 	/**
 	 * 
@@ -69,16 +67,6 @@ public class LEDStatusCommand extends ReadCommand implements ICommandHelp, IVirt
 			case(2): ledStatus = LEDStatus.FLASHING; break;
 		}
 
-	}
-
-	@Override
-	public boolean isVirtualKeypadChanged() {
-		return true;
-	}
-
-	@Override
-	public void updateVirtualKeypad(IVirtualKeypad keypad) {
-		keypad.setLedStatus(getLed(), getLedStatus());
 	}
 
 	public LED getLed() {
