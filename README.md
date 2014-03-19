@@ -71,6 +71,16 @@ observable.filter(new Func1<ReadCommand, Boolean>() {
 observable.ofType(ZoneOpenCommand.class).subscribe...
 ```
 
+###Use friendly labels
+```
+// Configure Labels
+Labels labels = new Labels(it100.getReadObservable(), it100.getWriteObservable());
+
+// Labels will request and collect a list of all Labels from the IT-100. This may take up to a few seconds to complete.
+
+// Get the label for Zone 5
+System.out.println(labels.getZoneLabel(5));
+```
 ##References
 
 [DSC IT-100 Product Page](http://www.dsc.com/index.php?n=products&amp;o=view&amp;id=22)
