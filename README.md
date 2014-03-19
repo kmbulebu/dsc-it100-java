@@ -11,7 +11,7 @@ The library is very much a work in progress. It is built using Apache MINA, a li
 ###Typical Serial Setup and Basic Usage
 ```
 // Configure IT-100 for Serial Port Access
-IT100 it100 = new IT100(new ConfigurationBuilder().withSerialPort("/dev/ttyUSB0",19200).build();
+IT100 it100 = new IT100(new ConfigurationBuilder().withSerialPort("/dev/ttyUSB0",19200).build());
 
 // Begin listening to IT-100 commands through an rxjava Observable
 Observable<ReadCommand> observable = it100.connect();
@@ -33,7 +33,7 @@ it100.send(new StatusRequestCommand());
 ###Add status polling
 ```
 // Periodically send status request commands to the IT-100. The IT-100 will reply with zone status, etc.
-IT100 it100 = new IT100(new ConfigurationBuilder().withStatusPolling(300).withSerialPort("/dev/ttyUSB0",19200).build();
+IT100 it100 = new IT100(new ConfigurationBuilder().withStatusPolling(300).withSerialPort("/dev/ttyUSB0",19200).build());
 ```
 
 ###Connect over a TCP connection (with ser2net)
@@ -66,6 +66,9 @@ observable.filter(new Func1<ReadCommand, Boolean>() {
     }
 	
 });
+
+// OR...
+observable.ofType(ZoneOpenCommand.class).subscribe...
 ```
 
 ##References
