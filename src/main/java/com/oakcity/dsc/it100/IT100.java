@@ -1,4 +1,6 @@
-package com.oakcity.dsc.it100.rx;
+package com.oakcity.dsc.it100;
+
+import java.net.SocketAddress;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -13,6 +15,7 @@ import org.apache.mina.handler.demux.MessageHandler;
 
 import rx.Observable;
 import rx.Observer;
+import rx.observables.ConnectableObservable;
 import rx.subjects.PublishSubject;
 
 import com.oakcity.dsc.it100.commands.read.ReadCommand;
@@ -21,6 +24,7 @@ import com.oakcity.dsc.it100.mina.codec.IT100CodecFactory;
 import com.oakcity.dsc.it100.mina.filters.CommandLogFilter;
 import com.oakcity.dsc.it100.mina.filters.PollKeepAliveFilter;
 import com.oakcity.dsc.it100.mina.filters.StatusRequestFilter;
+import com.oakcity.dsc.it100.rxjava.ReadCommandOnSubscribe;
 
 /**
  * API Main Entry point.
@@ -43,7 +47,7 @@ public class IT100 {
 	
 	private final Configuration configuration;
 	
-	private Observable<ReadCommand> readObservable;
+	private ConnectableObservable<ReadCommand> readObservable;
 	
 	private PublishSubject<WriteCommand> writeObservable;
 	
@@ -98,7 +102,8 @@ public class IT100 {
 		session = future.getSession(); 
 		
 		// Create and return our Observable for received IT-100 commands.
-		readObservable = Observable.create(readCommandObservable);
+		readObservable = Observable.create(readCommandObservable).publish();
+		readObservable.connect();
 		
 		// Create a write observer.
 		writeObservable = PublishSubject.create();
@@ -125,7 +130,7 @@ public class IT100 {
 		 if (readObservable == null) {
 			 throw new IllegalStateException("You must call connect() first.");
 		 }
-		return readObservable;
+		 return readObservable;
 	}
 	 
 	 public PublishSubject<WriteCommand> getWriteObservable() {
@@ -158,5 +163,17 @@ public class IT100 {
 		}
 	}
 	
+
+	public static interface Configuration {
+	
+		public IoConnector getConnector();
+		
+		public SocketAddress getAddress();
+		
+		public long getConnectTimeout();
+		
+		public int getStatusPollingInterval();
+	
+	}
 
 }

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.oakcity.dsc.it100.commands.util.CommandTimeDateFormat;
 
-public class CommandBuilder {
+public class CommandFactory {
 	
 	String commandCode = null;
 	StringBuilder data = new StringBuilder();

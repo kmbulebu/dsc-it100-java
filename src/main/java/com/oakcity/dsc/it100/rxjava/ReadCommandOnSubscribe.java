@@ -1,4 +1,4 @@
-package com.oakcity.dsc.it100.rx;
+package com.oakcity.dsc.it100.rxjava;
 
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.handler.demux.DemuxingIoHandler;

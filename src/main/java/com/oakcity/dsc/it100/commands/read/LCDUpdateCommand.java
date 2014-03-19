@@ -2,7 +2,6 @@ package com.oakcity.dsc.it100.commands.read;
 
 import java.util.Arrays;
 
-import com.oakcity.dsc.it100.IVirtualKeypad;
 import com.oakcity.dsc.it100.commands.ICommandHelp;
 
 public class LCDUpdateCommand extends ReadCommand implements ICommandHelp {
@@ -70,7 +69,7 @@ public class LCDUpdateCommand extends ReadCommand implements ICommandHelp {
 		asciiData = dataString.substring(5, 5 + numberCharactersToDisplay).toCharArray();
 	}
 	
-	public void updateVirtualKeypad(IVirtualKeypad keypad) {
+	/*public void updateVirtualKeypad(IVirtualKeypad keypad) {
 		int startingPos = lineNumber*16 + columnNumber;
 		
 		
@@ -86,7 +85,7 @@ public class LCDUpdateCommand extends ReadCommand implements ICommandHelp {
 		
 		keypad.setLcdLine1(new String(lineChars, 0, 16));
 		keypad.setLcdLine2(new String(lineChars, 16, 16));
-	}
+	}*/
 
 	public int getLineNumber() {
 		return lineNumber;

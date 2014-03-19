@@ -1,4 +1,4 @@
-package com.oakcity.dsc.it100.rx;
+package com.oakcity.dsc.it100;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -11,6 +11,8 @@ import org.apache.mina.transport.serial.SerialAddress.Parity;
 import org.apache.mina.transport.serial.SerialAddress.StopBits;
 import org.apache.mina.transport.serial.SerialConnector;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
+
+import com.oakcity.dsc.it100.IT100.Configuration;
 
 /**
  * Configuration Builder for the IT100.
