@@ -1,7 +1,12 @@
 package com.oakcity.dsc.it100.rxjava;
 
+import java.io.IOException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.handler.demux.DemuxingIoHandler;
+import org.apache.mina.handler.demux.ExceptionHandler;
 import org.apache.mina.handler.demux.MessageHandler;
 
 import rx.Subscriber;
@@ -9,6 +14,8 @@ import rx.Subscriber;
 import com.oakcity.dsc.it100.commands.read.ReadCommand;
 
 public class ReadCommandOnSubscribe implements rx.Observable.OnSubscribe<ReadCommand> {
+	
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private final DemuxingIoHandler demuxIoHandler;
 	
@@ -26,17 +33,22 @@ public class ReadCommandOnSubscribe implements rx.Observable.OnSubscribe<ReadCom
 			}
 			
 		};
-		// TODO Determine how we want to handle errors. One error and the Observable stops receiving events.
-		/*final ExceptionHandler<Throwable> exceptionHandler = new ExceptionHandler<Throwable>() {
+		
+		final ExceptionHandler<Throwable> exceptionHandler = new ExceptionHandler<Throwable>() {
 
 			@Override
 			public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
-				subscriber.onError(cause);
+				LOGGER.error("Exception caught while communicating with the IT-100: " + cause.getMessage(), cause);
+				// TODO Determine how we want to handle errors. One error and the Observable stops receiving events.
+				if (cause instanceof IOException) {
+					// We are probably doomed and should notify our consumers.
+					subscriber.onError(cause);
+				}
 			}
 			
 		};
 		
-		demuxIoHandler.addExceptionHandler(Throwable.class, exceptionHandler);*/
+		demuxIoHandler.addExceptionHandler(Throwable.class, exceptionHandler);
 		demuxIoHandler.addReceivedMessageHandler(ReadCommand.class, messageHandler);
 	}
 
