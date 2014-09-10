@@ -88,3 +88,7 @@ System.out.println(labels.getZoneLabel(5));
 [DSC IT-100 Developer Guide, hosted at HomeSeer](http://homeseer.com/pdfs/DSC/29007363R003_IT_100_developer_guide.pdf)
 
 [RxJava and Observables](http://github.com/Netflix/RxJava)
+
+[NickNack (Project for the automation of the Internet of Things)](http://github.com/kmbulebu/NickNack)
+
+
