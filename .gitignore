@@ -3,3 +3,6 @@
 /.classpath
 /.project
 .DS_Store
+/pom.xml.next
+/release.properties
+/pom.xml.tag
