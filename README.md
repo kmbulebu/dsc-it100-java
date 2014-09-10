@@ -1,5 +1,5 @@
+[![Build Status](https://drone.io/github.com/kmbulebu/dsc-it100-java/status.png)](https://drone.io/github.com/kmbulebu/dsc-it100-java/latest)
 #DSC IT-100 Java Library
-
 ##Introduction
 
 This library exposes all the capabilities of the DSC PowerSeries Integration Module as a Java API. With it, you should be able to automate security system tasks and receive notifications of events.
