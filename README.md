@@ -81,6 +81,14 @@ Labels labels = new Labels(it100.getReadObservable(), it100.getWriteObservable()
 // Get the label for Zone 5
 System.out.println(labels.getZoneLabel(5));
 ```
+##Maven
+```
+<dependency>
+    <groupId>com.github.kmbulebu.dsc</groupId>
+    <artifactId>dsc-it100-library</artifactId>
+    <version>0.4</version>
+</dependency>
+```
 
 ##Downloads
 [Latest JAR (master)](https://drone.io/github.com/kmbulebu/dsc-it100-java/files/target/dsc-it100-library.jar)
