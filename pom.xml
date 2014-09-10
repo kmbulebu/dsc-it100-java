@@ -4,13 +4,16 @@
 	<groupId>com.oakcity.dsc</groupId>
 	<artifactId>dsc-it100-library</artifactId>
 	<version>0.1-SNAPSHOT</version>
-	<name>DSC IT100 Serial Module API Library</name>
-	<description>Provides basic configuration of Maven Web Application projects.</description>
+	<name>DSC IT-100 Serial Module API Library</name>
+	<packaging>bundle</packaging>
+	<description>Enables communication with a DSC Security System via the IT-100 serial integration module.</description>
 	<url>https://github.com/kmbulebu/dsc-it100-java</url>
 	<inceptionYear>2013</inceptionYear>
 	<developers>
 		<developer>
 			<id>kmbulebu</id>
+			<name>Kevin Bulebush</name>
+			<url>https://github.com/kmbulebu/</url>
 		</developer>
 	</developers>
 	<scm>
@@ -65,11 +68,6 @@
 			<version>0.17.1</version>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-core</artifactId>
 		</dependency>
@@ -90,16 +88,24 @@
 		<dependency>
 			<groupId>org.bidib.jbidib.org.qbang.rxtx</groupId>
 			<artifactId>rxtxcomm</artifactId>
+			<optional>true</optional>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<scope>runtime</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -114,9 +120,28 @@
 						<target>1.7</target>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>2.5.3</version>
+					<configuration>
+						<instructions>
+						    <Private-Package>com.oakcity.dsc.it100.mina.*,
+							    		     com.oakcity.dsc.it100.rxjava</Private-Package>
+							<Export-Package>com.oakcity.dsc.it100.*, 
+										    !com.oakcity.dsc.it100.mina.*,
+										    !com.oakcity.dsc.it100.rxjava</Export-Package>
+						</instructions>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
+		    <plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<extensions>true</extensions>
+				</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>2.2.1</version>
