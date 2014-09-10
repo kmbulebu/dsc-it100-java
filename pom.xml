@@ -3,7 +3,7 @@
 
 	<groupId>com.github.kmbulebu.dsc</groupId>
 	<artifactId>dsc-it100-library</artifactId>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.4</version>
 	<packaging>bundle</packaging>
 
 	<name>DSC IT-100 Serial Module API Library</name>
@@ -32,7 +32,7 @@
 		<connection>scm:git:https://github.com/kmbulebu/dsc-it100-java.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/kmbulebu/dsc-it100-java.git</developerConnection>
 		<url>https://github.com/kmbulebu/dsc-it100-java</url>
-    <tag>HEAD</tag>
+    <tag>0.4</tag>
   </scm>
 
 	<distributionManagement>
