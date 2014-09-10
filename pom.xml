@@ -31,7 +31,7 @@
 
 	<scm>
 		<connection>scm:git:https://github.com/kmbulebu/dsc-it100-java.git</connection>
-		<developerConnection>scm:git:ssh://github.com/dsc-it100-java.git</developerConnection>
+		<developerConnection>scm:git:ssh://git@github.com/dsc-it100-java.git</developerConnection>
 		<url>https://github.com/kmbulebu/dsc-it100-java</url>
 	</scm>
 
