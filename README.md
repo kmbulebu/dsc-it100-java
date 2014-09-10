@@ -81,6 +81,12 @@ Labels labels = new Labels(it100.getReadObservable(), it100.getWriteObservable()
 // Get the label for Zone 5
 System.out.println(labels.getZoneLabel(5));
 ```
+
+##Downloads
+[Latest JAR (master)](https://drone.io/github.com/kmbulebu/dsc-it100-java/files/target/dsc-it100-library.jar)
+
+[Latest JavaDoc (master)](https://drone.io/github.com/kmbulebu/dsc-it100-java/files/target/dsc-it100-library-javadoc.jar)
+
 ##References
 
 [DSC IT-100 Product Page](http://www.dsc.com/index.php?n=products&amp;o=view&amp;id=22)
