@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.oakcity.dsc</groupId>
+	<groupId>com.github.kmbulebu.dsc</groupId>
 	<artifactId>dsc-it100-library</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
@@ -153,11 +153,11 @@
 					<version>2.5.3</version>
 					<configuration>
 						<instructions>
-							<Private-Package>com.oakcity.dsc.it100.mina.*,
-								com.oakcity.dsc.it100.rxjava</Private-Package>
-							<Export-Package>com.oakcity.dsc.it100.*,
-								!com.oakcity.dsc.it100.mina.*,
-								!com.oakcity.dsc.it100.rxjava</Export-Package>
+							<Private-Package>com.github.kmbulebu.dsc.it100.mina.*,
+								com.github.kmbulebu.dsc.it100.rxjava</Private-Package>
+							<Export-Package>com.github.kmbulebu.dsc.it100.*,
+								!com.github.kmbulebu.dsc.it100.mina.*,
+								!com.github.kmbulebu.dsc.it100.rxjava</Export-Package>
 						</instructions>
 					</configuration>
 				</plugin>
