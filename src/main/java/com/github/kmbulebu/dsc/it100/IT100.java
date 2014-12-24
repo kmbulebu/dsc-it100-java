@@ -66,7 +66,7 @@ public class IT100 {
 		// Setup MINA codecs
 		final IT100CodecFactory it100CodecFactory = new IT100CodecFactory();
 		final ProtocolCodecFilter protocolCodecFilter = new ProtocolCodecFilter(it100CodecFactory);
-		final CommandLogFilter loggingFilter = new CommandLogFilter(LOGGER, Level.INFO);
+		final CommandLogFilter loggingFilter = new CommandLogFilter(LOGGER, Level.DEBUG);
 		final PollKeepAliveFilter pollKeepAliveFilter = new PollKeepAliveFilter(KeepAliveRequestTimeoutHandler.EXCEPTION);
 		
 		// Connect to system serial port.
