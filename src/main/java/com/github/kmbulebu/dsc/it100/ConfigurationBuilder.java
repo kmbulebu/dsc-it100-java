@@ -56,7 +56,7 @@ public class ConfigurationBuilder {
 	/**
 	 * Time to wait to establish a connection with the IT-100.
 	 * @param milliseconds Timeout in milliseconds.
-	 * @return This builder instance.
+	 * @return ConfigurationBuilder This builder instance.
 	 */
 	public ConfigurationBuilder withConnectTimeout(long milliseconds) {
 		configuration.connectTimeout = milliseconds;
@@ -76,7 +76,7 @@ public class ConfigurationBuilder {
 	
 	/**
 	 * Create an immutable Configuration instance.
-	 * @return
+	 * @return Configuration Immutable configuration instance.
 	 */
 	public Configuration build() {
 		if (configuration.connector == null || configuration.address == null) {

@@ -58,7 +58,6 @@ public class IT100 {
 	/**
 	 * Begin communicating with the IT-100.
 	 * 
-	 * @return An Observable for reading commands sent by the IT-100 to the application.
 	 * @throws Exception If an error occurs while connecting to the IT-100
 	 */
 	public void connect() throws Exception {		

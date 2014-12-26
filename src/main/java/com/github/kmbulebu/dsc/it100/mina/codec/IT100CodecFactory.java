@@ -36,6 +36,7 @@ public class IT100CodecFactory implements ProtocolCodecFactory {
      * is {@link Integer#MAX_VALUE}.
      * <p>
      * This method does the same job with {@link TextLineEncoder#getMaxLineLength()}.
+     * @return int Maximum line length
      */
     public int getEncoderMaxLineLength() {
         return encoder.getMaxLineLength();
@@ -48,6 +49,7 @@ public class IT100CodecFactory implements ProtocolCodecFactory {
      * is {@link Integer#MAX_VALUE}.
      * <p>
      * This method does the same job with {@link TextLineEncoder#setMaxLineLength(int)}.
+     * @param maxLineLength The maximum line length.
      */
     public void setEncoderMaxLineLength(int maxLineLength) {
         encoder.setMaxLineLength(maxLineLength);
@@ -60,6 +62,7 @@ public class IT100CodecFactory implements ProtocolCodecFactory {
      * value is <tt>1024</tt> (1KB).
      * <p>
      * This method does the same job with {@link TextLineDecoder#getMaxLineLength()}.
+     * @return int Maximum line length
      */
     public int getDecoderMaxLineLength() {
         return decoder.getMaxLineLength();
@@ -72,6 +75,7 @@ public class IT100CodecFactory implements ProtocolCodecFactory {
      * value is <tt>1024</tt> (1KB).
      * <p>
      * This method does the same job with {@link TextLineDecoder#setMaxLineLength(int)}.
+     * @param maxLineLength The maximum line length.
      */
     public void setDecoderMaxLineLength(int maxLineLength) {
         decoder.setMaxLineLength(maxLineLength);
