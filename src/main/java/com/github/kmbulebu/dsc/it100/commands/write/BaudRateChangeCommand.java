@@ -11,7 +11,7 @@ public class BaudRateChangeCommand extends WriteCommand implements ICommandHelp 
 	 */
 	private static final long serialVersionUID = 610371346540454935L;
 
-	public static final String CODE = "580";
+	public static final String CODE = "080";
 	
 	private final BaudRate baudRate;
 
