@@ -15,4 +15,9 @@ public class KeyPressCommand extends WriteCommand implements ICommandHelp {
 	public String getDescription() {
 		return "This command simulates a Keypress on a Keypad. Keypress must be followed by a keybreak.";
 	}
+
+	@Override
+	public String toString() {
+		return "KeyPressCommand [data()=" + super.getData() + "]";
+	}
 }

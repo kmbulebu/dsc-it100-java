@@ -2,14 +2,14 @@ package com.github.kmbulebu.dsc.it100.commands.read;
 
 import com.github.kmbulebu.dsc.it100.commands.ICommandHelp;
 
-public class BeepStatusCommand extends ReadCommand implements ICommandHelp {
+public class BuzzerStatusCommand extends ReadCommand implements ICommandHelp {
 
-	public static final String CODE = "904";
+	public static final String CODE = "905";
 	private int duration;
 
 	@Override
 	public String getDescription() {
-		return "The IT-100 sends Beep Status to the application";
+		return "The IT-100 sends Buzzer Status";
 	}
 
 	@Override
@@ -23,6 +23,6 @@ public class BeepStatusCommand extends ReadCommand implements ICommandHelp {
 
 	@Override
 	public String toString() {
-		return "BeepStatusCommand [toString()=" + super.toString() + "]";
+		return "BuzzerStatusCommand [toString()=" + super.toString() + "]";
 	}
 }
