@@ -26,7 +26,12 @@ public class ReadCommandFactory {
 		codeToCommandMap.put(KeybusFaultCommand.CODE, KeybusFaultCommand.class);
 		codeToCommandMap.put(KeybusFaultRestoredCommand.CODE, KeybusFaultRestoredCommand.class);
 		codeToCommandMap.put(LCDUpdateCommand.CODE, LCDUpdateCommand.class);
+		codeToCommandMap.put(LCDCursorCommand.CODE, LCDCursorCommand.class);
 		codeToCommandMap.put(LEDStatusCommand.CODE, LEDStatusCommand.class);
+		codeToCommandMap.put(BeepStatusCommand.CODE, BeepStatusCommand.class);
+		codeToCommandMap.put(BuzzerStatusCommand.CODE, BuzzerStatusCommand.class);
+		codeToCommandMap.put(DoorChimeStatusCommand.CODE, DoorChimeStatusCommand.class);
+		codeToCommandMap.put(ToneStatusCommand.CODE, ToneStatusCommand.class);
 		codeToCommandMap.put(PanelACTroubleCommand.CODE, PanelACTroubleCommand.class);
 		codeToCommandMap.put(PanelACTroubleRestoreCommand.CODE, PanelACTroubleRestoreCommand.class);
 		codeToCommandMap.put(PanelBatteryTroubleCommand.CODE, PanelBatteryTroubleCommand.class);
@@ -56,7 +61,7 @@ public class ReadCommandFactory {
 	}
 	
 	
-	public ReadCommand parseCommand(String receivedCommand) throws CommandLengthException, UnknownCommandException, InvalidCommandException {
+	public ReadCommand parseCommand(String receivedCommand) throws InvalidCommandException {
 		if (receivedCommand.length() < 3) {
 			throw new CommandLengthException(receivedCommand.length());
 		}

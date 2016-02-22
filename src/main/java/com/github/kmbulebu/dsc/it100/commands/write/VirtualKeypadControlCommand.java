@@ -22,7 +22,7 @@ public class VirtualKeypadControlCommand extends WriteCommand implements IComman
 
 
 	public String getDescription() {
-		return "This command enables/disables the virtual keypad. When enabled, all virtual keypad commands (Virt) from the application will be processed. All virtual keypad responses (i.e., menu, status lights updates) are automatically initiated by the IT-100 and sent to the application. When this com- mand is disabled all virtual keypad commands (Virt) are ignored. The IT-100 does not send a response to this command unless there is a system error.";
+		return "This command enables/disables the virtual keypad. When enabled, all virtual keypad commands (Virt) from the application will be processed. All virtual keypad responses (i.e., menu, status lights updates) are automatically initiated by the IT-100 and sent to the application. When this command is disabled all virtual keypad commands (Virt) are ignored. The IT-100 does not send a response to this command unless there is a system error.";
 	}
 
 
