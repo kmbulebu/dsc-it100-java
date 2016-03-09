@@ -1,15 +1,14 @@
 package com.github.kmbulebu.dsc.it100.commands.read;
 
+import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand.CommandLengthException;
+import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand.InvalidCommandException;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand.CommandLengthException;
-import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand.InvalidCommandException;
-import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand.UnknownCommandException;
-
 
 public class ReadCommandFactory {
-	
+
 	private static Map<String, Class<? extends ReadCommand>> codeToCommandMap = new HashMap<String, Class<? extends ReadCommand>>();
 
 	static {
@@ -58,22 +57,27 @@ public class ReadCommandFactory {
 		codeToCommandMap.put(ZoneRestoredCommand.CODE, ZoneRestoredCommand.class);
 		codeToCommandMap.put(ZoneTamperCommand.CODE, ZoneTamperCommand.class);
 		codeToCommandMap.put(ZoneTamperRestoreCommand.CODE, ZoneTamperRestoreCommand.class);
+		codeToCommandMap.put(UserOpeningCommand.CODE, UserOpeningCommand.class);
+		codeToCommandMap.put(UserClosingCommand.CODE, UserClosingCommand.class);
+		codeToCommandMap.put(PartialClosingCommand.CODE, PartialClosingCommand.class);
+		codeToCommandMap.put(SpecialClosingCommand.CODE, SpecialClosingCommand.class);
+		codeToCommandMap.put(SoftwareVersionCommand.CODE, SoftwareVersionCommand.class);
 	}
-	
-	
+
+
 	public ReadCommand parseCommand(String receivedCommand) throws InvalidCommandException {
 		if (receivedCommand.length() < 3) {
 			throw new CommandLengthException(receivedCommand.length());
 		}
-		
+
 		final String commandCode = receivedCommand.substring(0, 3);
-		
+
 		Class<? extends ReadCommand> commandClass = codeToCommandMap.get(commandCode);
 		//System.out.println(commandCode + ", " + commandClass);
 		if (commandClass == null) {
 			throw new ReadCommand.UnknownCommandException(receivedCommand);
 		}
-		
+
 		ReadCommand command;
 		try {
 			command = commandClass.newInstance();
@@ -85,7 +89,7 @@ public class ReadCommandFactory {
 		command.init(receivedCommand);
 		return command;
 	}
-	
+
 	public static void registerCommand(String commandCode, Class<? extends ReadCommand> clazz) {
 		if (codeToCommandMap.containsKey(commandCode)) {
 			throw new IllegalArgumentException("You may not redefine an existing command.");
