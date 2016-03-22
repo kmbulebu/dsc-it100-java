@@ -4,7 +4,7 @@ import com.github.kmbulebu.dsc.it100.commands.ICommandHelp;
 
 public class BuzzerStatusCommand extends ReadCommand implements ICommandHelp {
 
-	public static final String CODE = "905";
+	public static final String CODE = "906";
 	private int duration;
 
 	@Override
@@ -14,6 +14,9 @@ public class BuzzerStatusCommand extends ReadCommand implements ICommandHelp {
 
 	@Override
 	protected void parseData(String dataString) throws CommandDataParseException {
+		if (dataString.length() != 3) {
+			throw new CommandDataParseException("Expected data length 3 bytes, received " + dataString.length());
+		}
 		duration = Integer.parseInt(dataString);
 	}
 
