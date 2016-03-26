@@ -4,7 +4,7 @@ import com.github.kmbulebu.dsc.it100.commands.ICommandHelp;
 
 public class ToneStatusCommand extends ReadCommand implements ICommandHelp {
 
-	public static final String CODE = "906";
+	public static final String CODE = "905";
 
 	private boolean constantToneControl;
 	private int numberOfBeeps;
