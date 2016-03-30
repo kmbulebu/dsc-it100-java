@@ -64,7 +64,7 @@ public class LCDCursorCommand extends ReadCommand implements ICommandHelp {
 		}
 	}
 
-	enum CursorType {
+	public enum CursorType {
 		OFF,
 		UNDERSCORE,
 		BLOCK
