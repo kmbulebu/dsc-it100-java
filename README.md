@@ -86,8 +86,12 @@ System.out.println(labels.getZoneLabel(5));
 <dependency>
     <groupId>com.github.kmbulebu.dsc</groupId>
     <artifactId>dsc-it100-library</artifactId>
-    <version>0.4</version>
+    <version>0.6</version>
 </dependency>
+```
+##Gradle
+```
+compile 'com.github.kmbulebu.dsc:dsc-it100-library:0.6'
 ```
 
 ##Downloads
