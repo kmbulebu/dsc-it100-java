@@ -3,7 +3,7 @@
 
 	<groupId>com.github.kmbulebu.dsc</groupId>
 	<artifactId>dsc-it100-library</artifactId>
-	<version>0.7-SNAPSHOT</version>
+	<version>0.6-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<name>DSC IT-100 Serial Module API Library</name>
