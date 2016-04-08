@@ -82,6 +82,8 @@ Labels labels = new Labels(it100.getReadObservable(), it100.getWriteObservable()
 System.out.println(labels.getZoneLabel(5));
 ```
 ##Maven
+This library is available via [Maven Central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.kmbulebu.dsc%22%20AND%20a%3A%22dsc-it100-library%22).
+
 ```
 <dependency>
     <groupId>com.github.kmbulebu.dsc</groupId>
@@ -94,10 +96,10 @@ System.out.println(labels.getZoneLabel(5));
 compile 'com.github.kmbulebu.dsc:dsc-it100-library:0.6'
 ```
 
-##Downloads
-[Latest JAR (master)](https://drone.io/github.com/kmbulebu/dsc-it100-java/files/target/dsc-it100-library.jar)
-
-[Latest JavaDoc (master)](https://drone.io/github.com/kmbulebu/dsc-it100-java/files/target/dsc-it100-library-javadoc.jar)
+##Roadmap
+* Replace RxJava dependency with a reactive-streams specification or more likely the Java 9 Flow API.
+* Identify and implement remaining DSC commands.
+* Support EnvisaLink3 or newer.
 
 ##References
 
@@ -108,5 +110,4 @@ compile 'com.github.kmbulebu.dsc:dsc-it100-library:0.6'
 [RxJava and Observables](http://github.com/Netflix/RxJava)
 
 [NickNack (Project for the automation of the Internet of Things)](http://github.com/kmbulebu/NickNack)
-
 
