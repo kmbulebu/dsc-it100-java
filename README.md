@@ -101,6 +101,10 @@ compile 'com.github.kmbulebu.dsc:dsc-it100-library:0.6'
 * Identify and implement remaining DSC commands.
 * Support EnvisaLink3 or newer.
 
+##Downstream Projects
+
+- v3rm0n wrote an awesome Virtual Keypad using the dsc-it100-java library, Kotlin, Spring Boot, Websockets, and Angular. GitHub:  [virtual-keypad](https://github.com/v3rm0n/virtual-keypad)
+
 ##References
 
 [DSC IT-100 Product Page](http://www.dsc.com/index.php?n=products&amp;o=view&amp;id=22)
