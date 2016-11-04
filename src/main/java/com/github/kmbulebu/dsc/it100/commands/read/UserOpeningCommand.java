@@ -4,6 +4,10 @@ import com.github.kmbulebu.dsc.it100.commands.ICommandHelp;
 
 public class UserOpeningCommand extends BaseUserCommand implements ICommandHelp {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String CODE = "750";
 
 	@Override

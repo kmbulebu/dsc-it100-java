@@ -5,6 +5,10 @@ import com.github.kmbulebu.dsc.it100.commands.util.Key;
 
 public class KeyPressCommand extends WriteCommand implements ICommandHelp {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String CODE = "070";
 
 	public KeyPressCommand(Key key) {

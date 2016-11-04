@@ -2,6 +2,10 @@ package com.github.kmbulebu.dsc.it100.commands.read;
 
 public abstract class BaseUserCommand extends BasePartitionCommand {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int userCode;
 
 	@Override

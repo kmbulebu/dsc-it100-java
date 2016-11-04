@@ -4,6 +4,10 @@ import com.github.kmbulebu.dsc.it100.commands.ICommandHelp;
 
 public class BuzzerStatusCommand extends ReadCommand implements ICommandHelp {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String CODE = "906";
 	private int duration;
 

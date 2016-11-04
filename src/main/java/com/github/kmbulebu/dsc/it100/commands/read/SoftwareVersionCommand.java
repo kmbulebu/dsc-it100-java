@@ -4,6 +4,11 @@ import com.github.kmbulebu.dsc.it100.commands.ICommandHelp;
 
 public class SoftwareVersionCommand extends ReadCommand implements ICommandHelp {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static final String CODE = "908";
 
 	private String softwareVersion;

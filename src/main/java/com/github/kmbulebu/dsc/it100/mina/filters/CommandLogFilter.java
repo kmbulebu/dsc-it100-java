@@ -49,11 +49,6 @@ public class CommandLogFilter extends IoFilterAdapter {
 		}
 
 		@Override
-		public Marker getParent() {
-			return null;
-		}
-
-		@Override
 		public boolean isInstanceOf(Marker m) {
 			return (m instanceof ReceivedMarker);
 		}
@@ -66,6 +61,31 @@ public class CommandLogFilter extends IoFilterAdapter {
 		@Override
 		public String toString() {
 			return "RECEIVED";
+		}
+
+		@Override
+		public Marker addParents(Marker... markers) {
+			return null;
+		}
+
+		@Override
+		public Marker[] getParents() {
+			return null;
+		}
+
+		@Override
+		public boolean hasParents() {
+			return false;
+		}
+
+		@Override
+		public boolean remove(Marker marker) {
+			return false;
+		}
+
+		@Override
+		public Marker setParents(Marker... markers) {
+			return null;
 		}
 		
 	}
@@ -84,11 +104,6 @@ public class CommandLogFilter extends IoFilterAdapter {
 		}
 
 		@Override
-		public Marker getParent() {
-			return null;
-		}
-
-		@Override
 		public boolean isInstanceOf(Marker m) {
 			return (m instanceof SentMarker);
 		}
@@ -101,6 +116,31 @@ public class CommandLogFilter extends IoFilterAdapter {
 		@Override
 		public String toString() {
 			return "SENT";
+		}
+
+		@Override
+		public Marker addParents(Marker... markers) {
+			return null;
+		}
+
+		@Override
+		public Marker[] getParents() {
+			return null;
+		}
+
+		@Override
+		public boolean hasParents() {
+			return false;
+		}
+
+		@Override
+		public boolean remove(Marker marker) {
+			return false;
+		}
+
+		@Override
+		public Marker setParents(Marker... markers) {
+			return null;
 		}
 		
 	}
