@@ -1,4 +1,4 @@
-[![Build Status](https://drone.io/github.com/kmbulebu/dsc-it100-java/status.png)](https://drone.io/github.com/kmbulebu/dsc-it100-java/latest)
+[![Build Status](https://travis-ci.org/kmbulebu/dsc-it100-java.svg?branch=master)](https://travis-ci.org/kmbulebu/dsc-it100-java)
 #DSC IT-100 Java Library
 ##Introduction
 
