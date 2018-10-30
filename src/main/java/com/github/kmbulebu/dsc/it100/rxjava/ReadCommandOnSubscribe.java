@@ -1,21 +1,19 @@
 package com.github.kmbulebu.dsc.it100.rxjava;
 
-import java.io.IOException;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.handler.demux.DemuxingIoHandler;
 import org.apache.mina.handler.demux.ExceptionHandler;
 import org.apache.mina.handler.demux.MessageHandler;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import rx.Subscriber;
 
-import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand;
+import java.io.IOException;
 
 public class ReadCommandOnSubscribe implements rx.Observable.OnSubscribe<ReadCommand> {
 	
-	private static final Logger LOGGER = LogManager.getLogger();
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReadCommandOnSubscribe.class);
 
 	private final DemuxingIoHandler demuxIoHandler;
 	

@@ -1,23 +1,5 @@
 package com.github.kmbulebu.dsc.it100;
 
-import java.net.SocketAddress;
-
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.mina.core.future.ConnectFuture;
-import org.apache.mina.core.service.IoConnector;
-import org.apache.mina.core.session.IoSession;
-import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
-import org.apache.mina.handler.demux.DemuxingIoHandler;
-import org.apache.mina.handler.demux.MessageHandler;
-
-import rx.Observable;
-import rx.Observer;
-import rx.observables.ConnectableObservable;
-import rx.subjects.PublishSubject;
-
 import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand;
 import com.github.kmbulebu.dsc.it100.commands.write.WriteCommand;
 import com.github.kmbulebu.dsc.it100.mina.codec.IT100CodecFactory;
@@ -25,6 +7,22 @@ import com.github.kmbulebu.dsc.it100.mina.filters.CommandLogFilter;
 import com.github.kmbulebu.dsc.it100.mina.filters.PollKeepAliveFilter;
 import com.github.kmbulebu.dsc.it100.mina.filters.StatusRequestFilter;
 import com.github.kmbulebu.dsc.it100.rxjava.ReadCommandOnSubscribe;
+import org.apache.mina.core.future.ConnectFuture;
+import org.apache.mina.core.service.IoConnector;
+import org.apache.mina.core.session.IoSession;
+import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
+import org.apache.mina.handler.demux.DemuxingIoHandler;
+import org.apache.mina.handler.demux.MessageHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.event.Level;
+import rx.Observable;
+import rx.Observer;
+import rx.observables.ConnectableObservable;
+import rx.subjects.PublishSubject;
+
+import java.net.SocketAddress;
 
 /**
  * API Main Entry point.
@@ -43,7 +41,7 @@ public class IT100 {
 	private IoConnector connector = null;
 	private IoSession session = null;
 	
-	private static final Logger LOGGER = LogManager.getLogger();
+	private static final Logger LOGGER = LoggerFactory.getLogger(IT100.class);
 	
 	private final Configuration configuration;
 	
