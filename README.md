@@ -1,14 +1,14 @@
 [![Build Status](https://travis-ci.org/kmbulebu/dsc-it100-java.svg?branch=master)](https://travis-ci.org/kmbulebu/dsc-it100-java)
-#DSC IT-100 Java Library
-##Introduction
+# DSC IT-100 Java Library
+## Introduction
 
 This library exposes all the capabilities of the DSC PowerSeries Integration Module as a Java API. With it, you should be able to automate security system tasks and receive notifications of events.
 
 The library is very much a work in progress. It is built using Apache MINA, a library for implementing protocols. The first pass of the API is nearly complete, and usable as is. The most common IT-100 commands and messages are implemented. The less common ones still need implemented. Data is output using the RxJava functional reactive API.
 
-##Basic Usage
+## Basic Usage
 
-###Typical Serial Setup and Basic Usage
+### Typical Serial Setup and Basic Usage
 ```
 // Configure IT-100 for Serial Port Access
 IT100 it100 = new IT100(new ConfigurationBuilder().withSerialPort("/dev/ttyUSB0",19200).build());
@@ -30,25 +30,25 @@ observable.subscribe(new Action1<ReadCommand>() {
 it100.send(new StatusRequestCommand());
 ```
 
-###Add status polling
+### Add status polling
 ```
 // Periodically send status request commands to the IT-100. The IT-100 will reply with zone status, etc.
 IT100 it100 = new IT100(new ConfigurationBuilder().withStatusPolling(300).withSerialPort("/dev/ttyUSB0",19200).build());
 ```
 
-###Connect over a TCP connection (with ser2net)
+### Connect over a TCP connection (with ser2net)
 ```
 // Send a Status Request Command and wait for it to completely send.
 IT100 it100 = new IT100(new ConfigurationBuilder().withRemoteSocket("raspberrypi", 2000).build());
 ```
 
-###Shutdown
+### Shutdown
 ```
 // Close the connection and port.
 it100.disconnect();
 ```
 
-###Filter out commands
+### Filter out commands
 ```
 // Print only Zone Openings
 observable.filter(new Func1<ReadCommand, Boolean>() {
@@ -71,7 +71,7 @@ observable.filter(new Func1<ReadCommand, Boolean>() {
 observable.ofType(ZoneOpenCommand.class).subscribe...
 ```
 
-###Use friendly labels
+### Use friendly labels
 ```
 // Configure Labels
 Labels labels = new Labels(it100.getReadObservable(), it100.getWriteObservable());
@@ -81,7 +81,7 @@ Labels labels = new Labels(it100.getReadObservable(), it100.getWriteObservable()
 // Get the label for Zone 5
 System.out.println(labels.getZoneLabel(5));
 ```
-##Maven
+## Maven
 This library is available via [Maven Central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.github.kmbulebu.dsc%22%20AND%20a%3A%22dsc-it100-library%22).
 
 ```
@@ -91,21 +91,21 @@ This library is available via [Maven Central](https://search.maven.org/#search%7
     <version>0.6</version>
 </dependency>
 ```
-##Gradle
+## Gradle
 ```
 compile 'com.github.kmbulebu.dsc:dsc-it100-library:0.6'
 ```
 
-##Roadmap
+## Roadmap
 * Replace RxJava dependency with a reactive-streams specification or more likely the Java 9 Flow API.
 * Identify and implement remaining DSC commands.
 * Support EnvisaLink3 or newer.
 
-##Downstream Projects
+## Downstream Projects
 
 - v3rm0n wrote an awesome Virtual Keypad using the dsc-it100-java library, Kotlin, Spring Boot, Websockets, and Angular. GitHub:  [virtual-keypad](https://github.com/v3rm0n/virtual-keypad)
 
-##References
+## References
 
 [DSC IT-100 Product Page](http://www.dsc.com/index.php?n=products&amp;o=view&amp;id=22)
 
