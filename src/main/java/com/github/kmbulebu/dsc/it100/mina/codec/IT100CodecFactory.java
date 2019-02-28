@@ -59,7 +59,7 @@ public class IT100CodecFactory implements ProtocolCodecFactory {
      * Returns the allowed maximum size of the line to be decoded.
      * If the size of the line to be decoded exceeds this value, the
      * decoder will throw a {@link BufferDataException}.  The default
-     * value is <tt>1024</tt> (1KB).
+     * value is 1024 (1KB).
      * <p>
      * This method does the same job with {@link TextLineDecoder#getMaxLineLength()}.
      * @return int Maximum line length
@@ -72,7 +72,7 @@ public class IT100CodecFactory implements ProtocolCodecFactory {
      * Sets the allowed maximum size of the line to be decoded.
      * If the size of the line to be decoded exceeds this value, the
      * decoder will throw a {@link BufferDataException}.  The default
-     * value is <tt>1024</tt> (1KB).
+     * value is 1024 (1KB).
      * <p>
      * This method does the same job with {@link TextLineDecoder#setMaxLineLength(int)}.
      * @param maxLineLength The maximum line length.
