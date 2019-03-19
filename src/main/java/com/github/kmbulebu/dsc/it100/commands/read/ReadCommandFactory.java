@@ -3,6 +3,7 @@ package com.github.kmbulebu.dsc.it100.commands.read;
 import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand.CommandLengthException;
 import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand.InvalidCommandException;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,10 +81,8 @@ public class ReadCommandFactory {
 
 		ReadCommand command;
 		try {
-			command = commandClass.newInstance();
-		} catch (InstantiationException e) {
-			throw new InvalidCommandException(e);
-		} catch (IllegalAccessException e) {
+			command = commandClass.getConstructor().newInstance();
+		} catch (InstantiationException | InvalidCommandException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			throw new InvalidCommandException(e);
 		}
 		command.init(receivedCommand);
