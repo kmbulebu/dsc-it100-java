@@ -18,12 +18,14 @@ import rx.Observer;
 import rx.observables.ConnectableObservable;
 import rx.subjects.PublishSubject;
 
+import com.github.kmbulebu.dsc.it100.commands.read.EnvisalinkLoginInteractionCommand;
 import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand;
 import com.github.kmbulebu.dsc.it100.commands.write.WriteCommand;
 import com.github.kmbulebu.dsc.it100.mina.codec.IT100CodecFactory;
 import com.github.kmbulebu.dsc.it100.mina.filters.CommandLogFilter;
 import com.github.kmbulebu.dsc.it100.mina.filters.PollKeepAliveFilter;
 import com.github.kmbulebu.dsc.it100.mina.filters.StatusRequestFilter;
+import com.github.kmbulebu.dsc.it100.mina.handlers.EnvisalinkLoginHandler;
 import com.github.kmbulebu.dsc.it100.rxjava.ReadCommandOnSubscribe;
 
 /**
@@ -80,11 +82,18 @@ public class IT100 {
 		connector.getFilterChain().addLast("logger", loggingFilter);   
 	    connector.getFilterChain().addLast("keepalive", pollKeepAliveFilter);
 	    
+	    
 	    if (configuration.getStatusPollingInterval() != -1) {
 	    	connector.getFilterChain().addLast("statusrequest", new StatusRequestFilter(configuration.getStatusPollingInterval()));
 	    }
 	    
 	    final DemuxingIoHandler demuxIoHandler = new DemuxingIoHandler();
+	    
+	    // Handle Envisalink 505 request for password events
+	    if (configuration.getEnvisalinkPassword() != null) {
+	    	final EnvisalinkLoginHandler envisalinkLoginHandler = new EnvisalinkLoginHandler(configuration.getEnvisalinkPassword());
+	    	demuxIoHandler.addReceivedMessageHandler(EnvisalinkLoginInteractionCommand.class, envisalinkLoginHandler);
+	    }
 	    
 	    // We don't need to subscribe to the messages we sent.
 		demuxIoHandler.addSentMessageHandler(Object.class, MessageHandler.NOOP);
@@ -100,7 +109,7 @@ public class IT100 {
 		// Get a reference to the session
 		session = future.getSession(); 
 		
-		// Create and return our Observable for received IT-100 commands.
+		// Create and return our Observable for received IT-100 commands.	
 		readObservable = Observable.create(readCommandObservable).publish();
 		readObservable.connect();
 		
@@ -172,6 +181,8 @@ public class IT100 {
 		public long getConnectTimeout();
 		
 		public int getStatusPollingInterval();
+
+		public String getEnvisalinkPassword();
 	
 	}
 

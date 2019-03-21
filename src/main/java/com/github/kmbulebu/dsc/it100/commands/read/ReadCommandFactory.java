@@ -13,6 +13,7 @@ public class ReadCommandFactory {
 	private static Map<String, Class<? extends ReadCommand>> codeToCommandMap = new HashMap<String, Class<? extends ReadCommand>>();
 
 	static {
+		codeToCommandMap.put(EnvisalinkLoginInteractionCommand.CODE, EnvisalinkLoginInteractionCommand.class);
 		codeToCommandMap.put(AcknowledgeCommand.CODE, AcknowledgeCommand.class);
 		codeToCommandMap.put(BaudRateSetCommand.CODE, BaudRateSetCommand.class);
 		codeToCommandMap.put(BroadcastLabelsCommand.CODE, BroadcastLabelsCommand.class);

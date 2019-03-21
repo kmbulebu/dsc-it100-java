@@ -1,16 +1,19 @@
 package com.github.kmbulebu.dsc.it100;
 
-import rx.Observable;
-import rx.functions.Action1;
-
 import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand;
 import com.github.kmbulebu.dsc.it100.commands.read.ZoneOpenCommand;
+import com.github.kmbulebu.dsc.it100.commands.write.WriteCommand;
+
+import rx.Observable;
+import rx.functions.Action1;
 
 public class ExampleApp {
 
 	public static void main(String[] args) {
-		// Configure for remote RaspberryPI with serial dongle and ser2net setup on port 2000 TCP.
-		final IT100 it100 = new IT100(new ConfigurationBuilder().withRemoteSocket("raspberrypi", 2000).build());
+		
+		// Configure for Envisalink (defaults)
+		final IT100 it100 = new IT100(new ConfigurationBuilder().withRemoteSocket("envisalink", 4025)
+				.withEnvisalinkPassword("user").build());
 		
 		try {	
 			// Start communicating with IT-100.
@@ -20,6 +23,26 @@ public class ExampleApp {
 			
 			// Labels gives us friendly names to our zones.
 			final Labels labels = new Labels(readObservable, it100.getWriteObservable());
+			
+			it100.getWriteObservable().subscribe(new Action1<WriteCommand>() {
+
+				@Override
+				public void call(WriteCommand command) {
+					System.out.println("Write: " + System.currentTimeMillis() + " " + command.getCommandCode() + " " + command.getData());
+				}
+				
+			});
+			
+			// Subscribe to all
+			readObservable.subscribe(new Action1<ReadCommand>() {
+
+				@Override
+				public void call(ReadCommand command) {
+					// TODO Auto-generated method stub
+					System.out.println("Read: " + System.currentTimeMillis() + " " + command.getCommandCode() + " " + command.getData());
+				}
+				
+			});
 			
 			// Subscribe to Zone opening events
 			readObservable.ofType(ZoneOpenCommand.class).subscribe(new Action1<ZoneOpenCommand>() {
