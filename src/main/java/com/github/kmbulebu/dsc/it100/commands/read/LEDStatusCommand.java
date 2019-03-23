@@ -10,7 +10,7 @@ public class LEDStatusCommand extends ReadCommand implements ICommandHelp {
 	private static final long serialVersionUID = -94076149793102204L;
 	public static final String CODE = "903";
 	
-	private LED led;
+	private Led led;
 	private LEDStatus ledStatus;
 
 	public String getDescription() {
@@ -37,15 +37,15 @@ public class LEDStatusCommand extends ReadCommand implements ICommandHelp {
 		}
 		
 		switch (ledNumber) {
-			case(1): led = LED.READY; break;
-			case(2): led = LED.ARMED; break;
-			case(3): led = LED.MEMORY; break;
-			case(4): led = LED.BYPASS; break;
-			case(5): led = LED.TROUBLE; break;
-			case(6): led = LED.PROGRAM; break;
-			case(7): led = LED.FIRE; break;
-			case(8): led = LED.BACKLIGHT; break;
-			case(9): led = LED.AC; break;
+			case(1): led = Led.READY; break;
+			case(2): led = Led.ARMED; break;
+			case(3): led = Led.MEMORY; break;
+			case(4): led = Led.BYPASS; break;
+			case(5): led = Led.TROUBLE; break;
+			case(6): led = Led.PROGRAM; break;
+			case(7): led = Led.FIRE; break;
+			case(8): led = Led.BACKLIGHT; break;
+			case(9): led = Led.AC; break;
 		}
 		
 		
@@ -69,7 +69,7 @@ public class LEDStatusCommand extends ReadCommand implements ICommandHelp {
 
 	}
 
-	public LED getLed() {
+	public Led getLed() {
 		return led;
 	}
 

@@ -1,6 +1,6 @@
 package com.github.kmbulebu.dsc.it100.commands.read;
 
-public enum LED {
+public enum Led {
 	
 	READY(1, "Ready"),
 	ARMED(2, "Armed"),
@@ -15,7 +15,7 @@ public enum LED {
 	private final int number;
 	private final String name;
 	
-	private LED(int number, String name) {
+	private Led(int number, String name) {
 		this.number = number;
 		this.name = name;
 	}

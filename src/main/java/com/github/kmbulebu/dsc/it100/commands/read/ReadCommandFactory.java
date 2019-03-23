@@ -16,6 +16,8 @@ public class ReadCommandFactory {
 		codeToCommandMap.put(EnvisalinkLoginInteractionCommand.CODE, EnvisalinkLoginInteractionCommand.class);
 		codeToCommandMap.put(EnvisalinkLEDStateCommand.CODE, EnvisalinkLEDStateCommand.class);
 		codeToCommandMap.put(EnvisalinkLEDFlashStateCommand.CODE, EnvisalinkLEDFlashStateCommand.class);
+		codeToCommandMap.put(EnvisalinkVerboseTroubleStatusCommand.CODE, EnvisalinkVerboseTroubleStatusCommand.class);
+		codeToCommandMap.put(EnvisalinkCommandOutputPressedCommand.CODE, EnvisalinkCommandOutputPressedCommand.class);
 		codeToCommandMap.put(AcknowledgeCommand.CODE, AcknowledgeCommand.class);
 		codeToCommandMap.put(BaudRateSetCommand.CODE, BaudRateSetCommand.class);
 		codeToCommandMap.put(BroadcastLabelsCommand.CODE, BroadcastLabelsCommand.class);

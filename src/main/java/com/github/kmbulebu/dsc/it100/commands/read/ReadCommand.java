@@ -3,10 +3,11 @@ package com.github.kmbulebu.dsc.it100.commands.read;
 import java.io.Serializable;
 
 import com.github.kmbulebu.dsc.it100.commands.ICommand;
+import com.github.kmbulebu.dsc.it100.commands.ICommandHelp;
 import com.github.kmbulebu.dsc.it100.commands.util.CommandChecksum;
 
 
-public abstract class ReadCommand implements ICommand, Serializable {
+public abstract class ReadCommand implements ICommand, ICommandHelp, Serializable {
 	
 	/**
 	 * 
