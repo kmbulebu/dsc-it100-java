@@ -39,12 +39,12 @@ public class ExampleApp {
 				@Override
 				public void call(ReadCommand command) {
 					// TODO Auto-generated method stub
-					System.out.println("Read: " + System.currentTimeMillis() + " " + command.getCommandCode() + " " + command.getData());
+					System.out.println("Read: " + System.currentTimeMillis() + " " + command.getCommandCode() + " " + command.toString());
 				}
 				
 			});
 			
-			// Subscribe to Zone opening events
+			// Subscribe to Zone opening events to print zone labels (Only on IT-100)
 			readObservable.ofType(ZoneOpenCommand.class).subscribe(new Action1<ZoneOpenCommand>() {
 
 				@Override
