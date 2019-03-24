@@ -18,13 +18,15 @@ import rx.Observer;
 import rx.observables.ConnectableObservable;
 import rx.subjects.PublishSubject;
 
+import com.github.kmbulebu.dsc.it100.commands.read.EnvisalinkLoginInteractionCommand;
 import com.github.kmbulebu.dsc.it100.commands.read.ReadCommand;
 import com.github.kmbulebu.dsc.it100.commands.write.WriteCommand;
 import com.github.kmbulebu.dsc.it100.mina.codec.IT100CodecFactory;
 import com.github.kmbulebu.dsc.it100.mina.filters.CommandLogFilter;
 import com.github.kmbulebu.dsc.it100.mina.filters.PollKeepAliveFilter;
 import com.github.kmbulebu.dsc.it100.mina.filters.StatusRequestFilter;
-import com.github.kmbulebu.dsc.it100.rxjava.ReadCommandOnSubscribe;
+import com.github.kmbulebu.dsc.it100.mina.handlers.EnvisalinkLoginHandler;
+import com.github.kmbulebu.dsc.it100.mina.handlers.ReadCommandOnSubscribe;
 
 /**
  * API Main Entry point.
@@ -47,7 +49,7 @@ public class IT100 {
 	
 	private final Configuration configuration;
 	
-	private ConnectableObservable<ReadCommand> readObservable;
+	private Observable<ReadCommand> readObservable;
 	
 	private PublishSubject<WriteCommand> writeObservable;
 	
@@ -80,17 +82,28 @@ public class IT100 {
 		connector.getFilterChain().addLast("logger", loggingFilter);   
 	    connector.getFilterChain().addLast("keepalive", pollKeepAliveFilter);
 	    
+	    
 	    if (configuration.getStatusPollingInterval() != -1) {
 	    	connector.getFilterChain().addLast("statusrequest", new StatusRequestFilter(configuration.getStatusPollingInterval()));
 	    }
 	    
 	    final DemuxingIoHandler demuxIoHandler = new DemuxingIoHandler();
 	    
-	    // We don't need to subscribe to the messages we sent.
-		demuxIoHandler.addSentMessageHandler(Object.class, MessageHandler.NOOP);
-		
+	    // Setup a read message handler
 		// OnSubscribe will allow us to create an Observable to received messages.
-		final ReadCommandOnSubscribe readCommandObservable = new ReadCommandOnSubscribe(demuxIoHandler);
+		final ReadCommandOnSubscribe readCommandObservable = new ReadCommandOnSubscribe();
+		demuxIoHandler.addReceivedMessageHandler(ReadCommand.class, readCommandObservable);
+		demuxIoHandler.addExceptionHandler(Exception.class, readCommandObservable);
+	    
+	    // Handle Envisalink 505 request for password events
+	    if (configuration.getEnvisalinkPassword() != null) {
+	    	final EnvisalinkLoginHandler envisalinkLoginHandler = new EnvisalinkLoginHandler(configuration.getEnvisalinkPassword());
+	    	demuxIoHandler.addReceivedMessageHandler(EnvisalinkLoginInteractionCommand.class, envisalinkLoginHandler);
+	    }
+	    
+	    // We don't need to subscribe to the messages we sent.
+		demuxIoHandler.addSentMessageHandler(Object.class, MessageHandler.NOOP);		
+
 		connector.setHandler(demuxIoHandler);
 		 
 		// Connect now
@@ -101,8 +114,9 @@ public class IT100 {
 		session = future.getSession(); 
 		
 		// Create and return our Observable for received IT-100 commands.
-		readObservable = Observable.create(readCommandObservable).publish();
-		readObservable.connect();
+		final ConnectableObservable<ReadCommand> connectableReadObservable = Observable.create(readCommandObservable).publish();
+		connectableReadObservable.connect();
+		readObservable = connectableReadObservable.share().asObservable();
 		
 		// Create a write observer.
 		writeObservable = PublishSubject.create();
@@ -133,7 +147,7 @@ public class IT100 {
 	}
 	 
 	 public PublishSubject<WriteCommand> getWriteObservable() {
-		 if (readObservable == null) {
+		 if (writeObservable	 == null) {
 			 throw new IllegalStateException("You must call connect() first.");
 		 }
 		return writeObservable;
@@ -172,6 +186,8 @@ public class IT100 {
 		public long getConnectTimeout();
 		
 		public int getStatusPollingInterval();
+
+		public String getEnvisalinkPassword();
 	
 	}
 

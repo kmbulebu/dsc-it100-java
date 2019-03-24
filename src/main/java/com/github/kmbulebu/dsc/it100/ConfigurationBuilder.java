@@ -75,6 +75,16 @@ public class ConfigurationBuilder {
 	}
 	
 	/**
+	 * Enables logging into an Envisalink 3 or 4 module.
+	 * @param password The 4-6 character Envisalink password.
+	 * @return This builder instance.
+	 */
+	public ConfigurationBuilder withEnvisalinkPassword(String password) {
+		configuration.envisalinkPassword = password;
+		return this;
+	}
+	
+	/**
 	 * Create an immutable Configuration instance.
 	 * @return Configuration Immutable configuration instance.
 	 */
@@ -91,12 +101,14 @@ public class ConfigurationBuilder {
 		private SocketAddress address = null;
 		private long connectTimeout = 5 * 1000; // 5 seconds
 		private int statusPollingInterval = -1; // Disabled
+		private String envisalinkPassword;
 
 		@Override
 		public IoConnector getConnector() {
 			return connector;
 		}
 		
+		@Override
 		public SocketAddress getAddress() {
 			return address;
 		}
@@ -109,6 +121,11 @@ public class ConfigurationBuilder {
 		@Override
 		public int getStatusPollingInterval() {
 			return statusPollingInterval;
+		}
+		
+		@Override
+		public String getEnvisalinkPassword() {
+			return envisalinkPassword;
 		}
 		
 	}
