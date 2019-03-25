@@ -42,6 +42,13 @@ IT100 it100 = new IT100(new ConfigurationBuilder().withStatusPolling(300).withSe
 IT100 it100 = new IT100(new ConfigurationBuilder().withRemoteSocket("raspberrypi", 2000).build());
 ```
 
+### Connect to an Envisalink 3 or 4
+```
+// Configure for Envisalink
+// Hostname/IP: envisalink, Port: 4025, Password: user
+IT100 it100 = new IT100(new ConfigurationBuilder().withRemoteSocket("envisalink", 4025).withEnvisalinkPassword("user").build());
+```
+
 ### Shutdown
 ```
 // Close the connection and port.
